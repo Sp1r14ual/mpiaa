@@ -1,6 +1,6 @@
 #include "duplicates.h"
 #include "../catch.hpp"
-
+#include "duplicates.cpp"
 #include <algorithm>
 
 template <class T>
