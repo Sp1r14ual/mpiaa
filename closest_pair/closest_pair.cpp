@@ -13,8 +13,19 @@ std::pair<Point, Point> closest_pair(const std::vector<Point> &points) {
 		throw invalid_argument("Not enough points");
 	}	
 
-	// Your implementation here.
-	
-	auto result = std::make_pair(Point(), Point());	
+	double min = 1000000000000001;
+	std::pair<Point, Point> result;
+
+	for (auto i = points.begin(); i != points.end(); i++)
+		for (auto j = i + 1; j != points.end(); j++)
+		{
+			double dist = (*i).distance(*j);
+			if (dist < min)
+			{
+				min = dist;
+				result = std::make_pair(*i, *j);
+			}
+		}
+
 	return result;
 }

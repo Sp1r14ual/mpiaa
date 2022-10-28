@@ -1,5 +1,5 @@
 #include "closest_pair.h"
-
+#include "closest_pair.cpp"
 #include "../catch.hpp"
 
 #include <sstream>
