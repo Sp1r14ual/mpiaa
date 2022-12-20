@@ -9,14 +9,14 @@ Dictionary::~Dictionary() {
 
 void Dictionary::set(const std::string& key, const std::string& value) {
     int index = hash_function(key) % table.size();
-    bool fl = false;
+    bool flag = false;
     std::pair<std::string, std::string> p(key, value);
     for (auto& bucket : table[index])
         if (bucket.first == key) {
             bucket.second.replace(bucket.second.begin(), bucket.second.end(), value);
-            fl = true;
+            flag = true;
         }
-    if (!fl)
+    if (!flag)
         table[index].push_back(p);
 }
 
