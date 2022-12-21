@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cmath>
+#include <chrono>
+#include <iostream>
 
 using namespace std;
 
@@ -73,6 +75,7 @@ std::pair<Point, Point> closest_pair(const std::vector<Point> &points) {
 	// Return the closest pair of points from given points.
 	// Order of points in the result doesn't matter.
 	// If there are fewer than 2 points, throw an exception.
+	auto t1 = std::chrono::high_resolution_clock::now();	
 
 	if (points.size() < 2)
 		throw invalid_argument("Not enough points");
@@ -103,6 +106,11 @@ std::pair<Point, Point> closest_pair(const std::vector<Point> &points) {
 	std::pair<Point, Point> min_pair = pl.first.distance(pl.second) < pr.first.distance(pr.second) ? 
 	pl.first.distance(pl.second) < pb.first.distance(pb.second) ? pl : pb : 
 	pr.first.distance(pr.second) < pb.first.distance(pb.second) ? pr : pb;
+
+	auto t2 = std::chrono::high_resolution_clock::now();
+	auto time = std::chrono::duration<double>(t2 - t1).count();
+	std::cout << "Time: " << time << " sec." << std::endl;
+
 
 	return min_pair;
 
