@@ -1,12 +1,13 @@
 #include "lcs.h"
 #include <string>
 #include <vector>
+#include <chrono>
+#include <iostream>
 using namespace std;
 
 //naive 
-/*
-string lcs(const string& s, const string& t){
 
+string lcs(const string& s, const string& t){
   string sSub = "";
   string tSub = "";
   if(!s.empty())
@@ -34,8 +35,8 @@ string lcs(const string& s, const string& t){
       return b;
   }
 }
-*/
 
+/*
 //effective
 string backtrack(int ** C, string first, string second, int i, int j)
 {
@@ -70,3 +71,4 @@ string lcs(const string &first, const string &second)
                 C[i][j] = max(C[i][j-1], C[i-1][j]);
     return backtrack(C, first, second, m, n);
 }
+*/
