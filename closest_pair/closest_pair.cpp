@@ -52,8 +52,13 @@ std::pair<Point, Point> closest_pair_between(const std::vector<Point> &PLeft, co
 
 }
 
-std::pair<Point, Point> bruteforce(const std::vector<Point> &points)
+std::pair<Point, Point> closest_pair(const std::vector<Point> &points)
 {
+	auto t1 = std::chrono::high_resolution_clock::now();
+	if (points.size() < 2) {
+		throw invalid_argument("Not enough points");
+	}	
+
 	double min = 1000000000000001;
 	std::pair<Point, Point> result;
 
@@ -68,9 +73,13 @@ std::pair<Point, Point> bruteforce(const std::vector<Point> &points)
 			}
 		}
 
+	auto t2 = std::chrono::high_resolution_clock::now();
+	auto time = std::chrono::duration<double>(t2 - t1).count();
+	std::cout << "Time: " << time << " sec." << std::endl;
+
 	return result;
 }
-
+/*
 std::pair<Point, Point> closest_pair(const std::vector<Point> &points) {
 	// Return the closest pair of points from given points.
 	// Order of points in the result doesn't matter.
@@ -115,3 +124,4 @@ std::pair<Point, Point> closest_pair(const std::vector<Point> &points) {
 	return min_pair;
 
 }
+*/
