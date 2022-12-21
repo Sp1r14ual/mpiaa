@@ -3,6 +3,40 @@
 #include <vector>
 using namespace std;
 
+//naive 
+/*
+string lcs(const string& s, const string& t){
+
+  string sSub = "";
+  string tSub = "";
+  if(!s.empty())
+    sSub = s.substr(1);
+  if(!t.empty())
+    tSub = t.substr(1);
+
+  if(s.empty() || t.empty())
+    return "";
+
+  if(s[0] == t[0]){
+    string firstOfS = "";
+    firstOfS += s[0];
+    firstOfS += lcs(sSub, tSub);
+    return s[0] + lcs(sSub, tSub);
+  }
+
+  else
+  {
+    string a = lcs(sSub, t);
+    string b = lcs(s, tSub);
+    if(a.length() > b.length())
+      return a;
+    else
+      return b;
+  }
+}
+*/
+
+//effective
 string backtrack(int ** C, string first, string second, int i, int j)
 {
     if (i == 0 || j == 0)
@@ -35,7 +69,4 @@ string lcs(const string &first, const string &second)
             else
                 C[i][j] = max(C[i][j-1], C[i-1][j]);
     return backtrack(C, first, second, m, n);
-
-
-
 }
