@@ -1,6 +1,8 @@
 #include "shortest_path.h"
 #include <queue>
 #include <vector>
+#include <chrono>
+#include <iostream>
 #define N 1000000000
 using namespace std;
 
@@ -22,9 +24,15 @@ vector<int> build_path(vector<int>& prev, int start_vertex, int end_vertex)
 }
 
 vector<int> shortest_path(const Graph &graph, int start_vertex, int end_vertex) {
+    auto t1 = std::chrono::high_resolution_clock::now();
     int v_size = graph.get_vertices().size();
     if (v_size == 0 || start_vertex == end_vertex)
+    {
+        auto t2 = std::chrono::high_resolution_clock::now();		
+	    auto time = std::chrono::duration<double>(t2 - t1).count();
+        std::cout << "Time: " << time << " sec." << std::endl;
         return vector<int> {};
+    }
 
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<pair<double, int>>> pq;
     vector<double> dist(v_size, N);
@@ -55,6 +63,9 @@ vector<int> shortest_path(const Graph &graph, int start_vertex, int end_vertex) 
             }
         }
     }
+	auto t2 = std::chrono::high_resolution_clock::now();		
+	auto time = std::chrono::duration<double>(t2 - t1).count();
+    std::cout << "Time: " << time << " sec." << std::endl;
 
     return build_path(prev, start_vertex, end_vertex);
 }
